@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}
+Marks Details
+{% endblock title %}
+
+{% block body %}
+{% if del_msg %}
+<div class="container-fluid container-sm my-5 pt-5" style="max-width:667px">
+    <div class="alert alert-success">{{ del_msg }}</div>
+</div>
+{% elif del_fail %}
+<div class="container-fluid container-md my-5 pt-5" style="max-width:667px">
+    <div class="alert alert-danger">{{ del_fail }}</div>
+</div>
+{% endif %}
+<div class="container my-5">
+    {% if data %}
+    <table class="table table-dark table-hover table-bordered table-striped">
+        <thead>
+            <tr>
+                {% for heading in headings %}
+                <th>{{ heading }}</th>
+                {% endfor %}
+                <th>DELETE</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for row in data %}
+        <tr>
+            {% for item in row %}
+            <td>{{ item }}</td>
+            {% endfor %}
+            <td>
+                <form method="POST" action="/marks/{{ row[0] }} {{ row[1] }}">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% elif not del_msg and not del_fail %}
+        <div class="alert alert-warning">{{ msg }}</div>
+    {% endif %}
+</div>
+<div class="container my-5">
+    <a href="/marksForm" class="btn btn-primary">Insert New Record</a>
+</div>
+{% endblock body %}
+

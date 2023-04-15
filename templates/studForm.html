@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}
+Insert Student Details
+{% endblock title %}
+
+{% block body %}
+{% if msg %}
+<div class="container-fluid container-sm my-5 pt-5" style="max-width:667px">
+    <div class="alert alert-success">{{ msg }}</div>
+</div>
+{% elif fail_msg %}
+<div class="container-fluid container-md my-5 pt-5" style="max-width:667px">
+    <div class="alert alert-danger">{{ fail_msg }}</div>
+</div>
+{% endif %}
+<div class="container-fluid container-md my-5 pt-5" style="max-width:667px">
+<form action="/studForm" method="post" autocomplete="off">
+    <div class="mb-3 mt-3">
+        <label for="usn" class="form-label text-white">USN:</label>
+        <input type="text" class="form-control" id="usn" placeholder="Enter USN" name="usn">
+    </div>
+    <div class="mb-3">
+        <label for="name" class="form-label text-white">Student Name:</label>
+        <input type="text" class="form-control" id="name" placeholder="Enter Student Name" name="name" onkeydown="return /[a-zA-Z\s]/i.test(event.key)" required>
+    </div>
+    <div class="mb-3">
+        <label for="name" class="form-label text-white">Department:</label>
+        <select class="form-select" id="dept_id" name="dept_id">
+            {% for dept in depts %}
+            <option>{{ dept[0] }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="number" class="form-label text-white">Phone number:</label>
+        <input type="number" class="form-control" id="number" placeholder="Enter phone number" name="number" onkeydown="return /[^e]/i.test(event.key)">
+    </div>
+    <div class="mb-3">
+        <label for="sec" class="form-label text-white">Section:</label>
+        <input type="text" class="form-control" id="sec" placeholder="Enter section" name="sec" maxlength="1">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+{% endblock body %}
+

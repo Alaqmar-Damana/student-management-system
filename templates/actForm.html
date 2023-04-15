@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% block title %}
+Insert Activity Details
+{% endblock title %}
+
+{% block body %}
+{% if msg %}
+<div class="container-fluid container-sm my-5 pt-5" style="max-width:667px">
+    <div class="alert alert-success">{{ msg }}</div>
+</div>
+{% elif fail_msg %}
+<div class="container-fluid container-md my-5 pt-5" style="max-width:667px">
+    <div class="alert alert-danger">{{ fail_msg }}</div>
+</div>
+{% endif %}
+<div class="container-fluid container-md my-5 pt-5" style="max-width:667px">
+<form action="/actForm" method="post" autocomplete="off">
+    <div class="mb-3 mt-3">
+        <label for="id" class="form-label text-white">Activity ID:</label>
+        <input type="number" class="form-control" id="id" placeholder="Enter Activity ID" name="id">
+    </div>
+    <div class="mb-3">
+        <label for="guide" class="form-label text-white">Guide Name(s):</label>
+        <input type="text" class="form-control" id="guide" placeholder="Enter Guide Name(s)" name="guide">
+    </div>
+    <div class="mb-3">
+        <label for="type" class="form-label text-white">Type:</label>
+        <select class="form-select" id="type" name="type">
+            <option value="Intra Institute Internship">Intra Institute Internship</option>
+            <option value="Inter Institute Internship">Inter Institute Internship</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="cat" class="form-label text-white">Category:</label>
+        <select class="form-select" id="cat" name="cat">
+            <option value="Institutional workshop / training">Institutional workshop / training</option>
+            <option value="Learning at departmental lab / tinkering lab / institutional workshop">Learning at departmental lab / tinkering lab / institutional workshop</option>
+            <option value="Working for consultancy / research project">Working for consultancy / research project</option>
+            <option value="Other than the above five activities">Other than the above five activities</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="name" class="form-label text-white">Name of the Activity:</label>
+        <input type="text" class="form-control" id="name" placeholder="Enter Activity Name" name="name">
+    </div>
+    <div class="mb-3">
+        <label for="mode" class="form-label text-white">Mode:</label>
+        <select class="form-select" id="mode" name="mode">
+            <option value="Online">Online</option>
+            <option value="Offline">Offline</option>
+            <option value="Offline">Blended</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="place" class="form-label text-white">Place of the Activity:</label>
+        <input type="text" class="form-control" id="place" placeholder="Enter Activity Place" name="place">
+    </div>
+    <div class="mb-3">
+        <label for="ext" class="form-label text-white">External Mentor / Guide:</label>
+        <input type="text" class="form-control" id="ext" placeholder="Enter External Mentor / Guide Name If Any" name="ext">
+    </div>
+    <div class="mb-3">
+        <label for="start" class="form-label text-white">Date of Activity Commencement:</label>
+        <input type="date" class="form-control" id="start" name="start">
+    </div>
+    <div class="mb-3">
+        <label for="end" class="form-label text-white">Date of Completion:</label>
+        <input type="date" class="form-control" id="end" name="end">
+    </div>
+    <div class="mb-3 mt-3">
+        <label for="days" class="form-label text-white">Number of days:</label>
+        <input type="number" class="form-control" id="days" placeholder="Enter days" name="days">
+    </div>
+    <div class="mb-3">
+        <label for="cert" class="form-label text-white">Certificate available:</label>
+        <select class="form-select" id="cert" name="cert">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="report" class="form-label text-white">Report submitted:</label>
+        <select class="form-select" id="report" name="report">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+{% endblock body %}

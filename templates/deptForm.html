@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}
+Insert Student Details
+{% endblock title %}
+
+{% block body %}
+{% if msg %}
+<div class="container-fluid container-sm my-5 pt-5" style="max-width:667px">
+    <div class="alert alert-success">{{ msg }}</div>
+</div>
+{% elif fail_msg %}
+<div class="container-fluid container-md my-5 pt-5" style="max-width:667px">
+    <div class="alert alert-danger">{{ fail_msg }}</div>
+</div>
+{% endif %}
+<div class="container-fluid container-md my-5 pt-5" style="max-width:667px">
+<form action="/deptForm" method="post" autocomplete="off">
+    <div class="mb-3 mt-3">
+        <label for="id" class="form-label text-white">Department ID:</label>
+        <input type="text" class="form-control" id="id" placeholder="Enter Department ID" name="id">
+    </div>
+    <div class="mb-3">
+        <label for="name" class="form-label text-white">Department Name:</label>
+        <input type="text" class="form-control" id="name" placeholder="Enter Department Name" name="name">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+{% endblock body %}

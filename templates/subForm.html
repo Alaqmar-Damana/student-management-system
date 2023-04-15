@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}
+Insert Student Details
+{% endblock title %}
+
+{% block body %}
+{% if msg %}
+<div class="container-fluid container-sm my-5 pt-5" style="max-width:667px">
+    <div class="alert alert-success">{{ msg }}</div>
+</div>
+{% elif fail_msg %}
+<div class="container-fluid container-md my-5 pt-5" style="max-width:667px">
+    <div class="alert alert-danger">{{ fail_msg }}</div>
+</div>
+{% endif %}
+<div class="container-fluid container-md my-5 pt-5" style="max-width:667px">
+    <form action="/subForm" method="post" autocomplete="off">
+        <div class="mb-3 mt-3">
+            <label for="subcode" class="form-label text-white">Subject Code:</label>
+            <input type="text" class="form-control" id="subcode" placeholder="Enter Subject Code" name="subcode">
+        </div>
+        <div class="mb-3">
+            <label for="subname" class="form-label text-white">Subject Name:</label>
+            <input type="text" class="form-control" id="subname" placeholder="Enter Subject Name" name="subname">
+        </div>
+        <div class="mb-3">
+            <label for="sem" class="form-label text-white">Semester:</label>
+            <input type="number" class="form-control" id="sem" value="1" min="1" max="8" placeholder="Enter Semester" name="sem" onkeypress="event.preventDefault();">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock body %}

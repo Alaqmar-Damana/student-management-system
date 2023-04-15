@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}
+Insert Participation Details
+{% endblock title %}
+
+{% block body %}
+{% if msg %}
+<div class="container-fluid container-sm my-5 pt-5" style="max-width:667px">
+    <div class="alert alert-success">{{ msg }}</div>
+</div>
+{% elif fail_msg %}
+<div class="container-fluid container-md my-5 pt-5" style="max-width:667px">
+    <div class="alert alert-danger">{{ fail_msg }}</div>
+</div>
+{% endif %}
+<div class="container-fluid container-md my-5 pt-5" style="max-width:667px">
+<form action="/partForm" method="post" autocomplete="off">
+    <div class="mb-3">
+        <label for="id" class="form-label text-white">Activity ID:</label>
+        <select class="form-select" id="id" name="id">
+            {% for activity in activities %}
+            <option value="{{ activity[0] }}">{{ activity[0] }} - {{ activity[4] }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="usn" class="form-label text-white">Student:</label>
+        <select class="form-select" id="usn" name="usn">
+            {% for student in students %}
+            <option value="{{ student[0] }}">{{ student[0] }} - {{ student[1] }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+{% endblock body %}

@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block title %}
+Participation Details
+{% endblock title %}
+
+{% block body %}
+{% if del_msg %}
+<div class="container-fluid container-sm my-5 pt-5" style="max-width:667px">
+    <div class="alert alert-success">{{ del_msg }}</div>
+</div>
+{% elif del_fail %}
+<div class="container-fluid container-md my-5 pt-5" style="max-width:667px">
+    <div class="alert alert-danger">{{ del_fail }}</div>
+</div>
+{% endif %}
+<div class="container-fluid container-md mt-2" style="max-width:667px">
+    <form action="/participation" method="get" autocomplete="off">
+            <label for="usn-search" class="form-label text-white">Enter USN:</label>
+            <input type="text" class="form-control" id="usn-search" placeholder="Search by USN" name="usn-search">
+        <button type="submit" class="btn btn-primary mt-2">Search</button>
+    </form>
+</div>
+<div class="container my-3">
+    {% if data %}
+    <table class="table table-dark table-hover table-bordered table-striped">
+        <thead>
+            <tr>
+                {% for heading in headings %}
+                <th style="vertical-align: middle;">{{ heading }}</th>
+                {% endfor %}
+                <th style="vertical-align: middle;">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for row in data %}
+        <tr>
+            {% for item in row %}
+            <td style="vertical-align: middle;">{{ item }}</td>
+            {% endfor %}
+            <td style="vertical-align: middle;">
+                <form method="POST" action="/participation/{{ row[0] }} {{ row[2] }}">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% elif not del_msg and not del_fail %}
+        <div class="alert alert-warning">{{ msg }}</div>
+    {% endif %}
+</div>
+<!-- <div class="container my-5">
+    <a href="/partForm" class="btn btn-primary">Insert Participation Details</a>
+</div> -->
+{% endblock body %}
+
+{% block insert_button %}
+<li class="nav-item" style="margin-right: 36px;">
+    <a class="btn btn-primary" href="/partForm">Insert Participation</a>
+  </li>
+{% endblock insert_button %}
+
